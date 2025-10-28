@@ -1,12 +1,12 @@
 package gitpushmafia.projekti.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import java.util.List;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Kysymys {
@@ -16,8 +16,9 @@ public class Kysymys {
     private Long kysymysId;
     private String kysymys;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kysymys")
-    private List<Kysely> kysymykset;
+    @ManyToOne
+    @JoinColumn(name = "kyselyId")
+    private Kysely kysely;
 
     public Kysymys(){
         

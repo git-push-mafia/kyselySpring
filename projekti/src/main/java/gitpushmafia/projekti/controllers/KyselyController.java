@@ -21,9 +21,14 @@ private KyselyRepository kyselyRepository;
 @GetMapping("/kyselyt")
 public String getKysely(Model model) {
   model.addAttribute("kyselyt", kyselyRepository.findAll());
-  model.addAttribute("kysely", new Kysely());
-  
   return "etusivu";
+}
+
+@GetMapping("/addkysely")
+public String addKysely(Model model) {
+    Kysely kysely = new Kysely();
+    model.addAttribute("kysely", kysely);
+    return "addkysely";
 }
 
 @GetMapping("/addkysymys")
@@ -31,11 +36,11 @@ public String addNewKysymys(Model model) {
     
     model.addAttribute("kysymys", new Kysymys());
 
-    return "editkysely";
+    return "addkysymys";
 }
 
 @GetMapping("/editkysely/{kyselyId}")
-public String editKysely (@PathVariable("kyselyId") Long kyselyId, Model model) {
+public String editKysely (@PathVariable Long kyselyId, Model model) {
 
     Kysely kysely = kyselyRepository.findById(kyselyId).orElse(null);
 

@@ -1,14 +1,15 @@
 package gitpushmafia.projekti.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 
 @Entity
 public class Kysely {
@@ -20,8 +21,8 @@ public class Kysely {
   private LocalDate aloituspvm;
   private LocalDate lopetuspvm;
   
-  @ManyToOne
-  private List<Kysymys> kysymykset = new ArrayList<>();
+  @OneToMany(mappedBy = "kysely", cascade = CascadeType.ALL)
+  private List<Kysymys> kysymykset;
 
 
   public Kysely() {
