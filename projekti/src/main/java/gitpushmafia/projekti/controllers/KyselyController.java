@@ -1,0 +1,57 @@
+package gitpushmafia.projekti.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import gitpushmafia.projekti.domain.Kysely;
+import gitpushmafia.projekti.domain.KyselyRepository;
+import gitpushmafia.projekti.domain.Kysymys;
+
+@Controller
+public class KyselyController {
+
+@Autowired
+private KyselyRepository kyselyRepository;
+
+@GetMapping("/kyselyt")
+public String getKysely(Model model) {
+  model.addAttribute("kyselyt", kyselyRepository.findAll());
+  model.addAttribute("kysely", new Kysely());
+  
+  return "etusivu";
+}
+
+@GetMapping("/addkysymys")
+public String addNewKysymys(Model model) {
+    
+    model.addAttribute("kysymys", new Kysymys());
+
+    return "editkysely";
+}
+
+@GetMapping("/editkysely/{kyselyId}")
+public String editKysely (@PathVariable("kyselyId") Long kyselyId, Model model) {
+
+    Kysely kysely = kyselyRepository.findById(kyselyId).orElse(null);
+
+    model.addAttribute("kysely", kysely);
+
+    return "editkysely"; 
+}
+
+@PostMapping("/savekysely")
+public String saveKysely (@ModelAttribute Kysely kysely) {
+    kyselyRepository.save(kysely);
+    System.out.println("Tallennettu kysely: " + kysely);
+    
+    return "redirect:/kyselyt";
+}
+
+
+
+}

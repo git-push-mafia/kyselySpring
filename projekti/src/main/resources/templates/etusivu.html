@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Tervetuloa</title>
-    </head>
-    <body>
-        <h1 th:text="'Hei, ' + ${nimi} + '!'">Hei, maailma!</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Kyselyt</title>
+</head>
+<body>
+    <h1>Kyselyt</h1>
+    <table>
+        <tr>
+            <th>Nimi</th>
+            <th>Kuvaus</th>
+        </tr>
+        <tr th:each="kysely : ${kyselyt}">
+            <td th:text="${kysely.nimi}"></td>
+            <td th:text="${kysely.kuvaus}"></td>
+        </tr>
+    </table>
+    <a href="/addkysely">Lisää kysely</a>
+</body>
 </html>
