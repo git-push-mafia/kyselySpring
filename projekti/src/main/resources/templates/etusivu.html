@@ -7,16 +7,13 @@
 </head>
 <body>
     <h1>Kyselyt</h1>
-    <table>
-        <tr>
-            <th>Nimi</th>
-            <th>Kuvaus</th>
-        </tr>
-        <tr th:each="kysely : ${kyselyt}">
-            <td th:text="${kysely.nimi}"></td>
+    <h3>Nimi Kuvaus</h3>
+    <ul>
+        <li th:each="kysely : ${kyselyt}">
+            <a th:href="@{'/kysely/' + ${kysely.kyselyId}}" th:text="${kysely.nimi}"></a>
             <td th:text="${kysely.kuvaus}"></td>
-        </tr>
-    </table>
+        </li>
+    </ul>
     <a th:href="@{/addkysely}">Lisää kysely</a>
 </body>
 </html>

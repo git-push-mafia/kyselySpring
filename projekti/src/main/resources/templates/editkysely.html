@@ -6,7 +6,16 @@
     <title>Muokkaa kyselyä</title>
 </head>
 <body>
-    <h1>Muokkaa kyselyä</h1>
-    
+    <h1 th:text="${kysely.nimi}"></h1>
+        <p th:text="${kysely.kuvaus}"></p>
+
+    <h3>Kysymykset</h3>
+    <ol>
+        <li th:each="q : ${kysely.kysymykset}" th:text="${q.kysymys}"></li>
+    </ol>
+
+    <a th:href="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys'}">+ Lisää kysymys</a>
+    <br><br>
+    <a th:href="@{/kyselyt}">Takaisin</a>
 </body>
 </html>

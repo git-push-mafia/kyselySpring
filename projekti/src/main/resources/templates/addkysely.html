@@ -12,7 +12,6 @@
     <form action="#" th:action="@{/savekysely}" th:object="${kysely}" method="post">
         <p>Kyselyn nimi: <input type="text" th:field="${kysely.nimi}"></p>
         <p>Kuvaus: <input type="text" th:field="${kysely.kuvaus}"></p>
-        <input th:action="@{/addkysymys}" type="button" value="Lisää kysymys">
         <input class="submit-add" type="submit" value="Tallenna kysely">
     </form>
 </body>

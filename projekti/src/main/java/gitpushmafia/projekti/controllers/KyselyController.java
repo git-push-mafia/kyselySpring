@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import gitpushmafia.projekti.domain.Kysely;
 import gitpushmafia.projekti.domain.KyselyRepository;
@@ -39,7 +40,32 @@ public String addNewKysymys(Model model) {
     return "addkysymys";
 }
 
-@GetMapping("/editkysely/{kyselyId}")
+@GetMapping("/kysely/{kyselyId}/addkysymys")
+public String showAddKysymysForm(@PathVariable Long kyselyId, Model model) {
+
+    Kysely kysely = kyselyRepository.findById(kyselyId).orElse(null);
+    
+    model.addAttribute("kysely", kysely);
+    model.addAttribute("kysymys", new Kysymys());
+    
+    return "addkysymys";
+}
+
+@PostMapping("/kysely/{kyselyId}/addkysymys")
+public String saveKysymys(@PathVariable Long kyselyId, @RequestParam String kysymys) {
+    Kysely kysely = kyselyRepository.findById(kyselyId).orElseThrow();
+
+    Kysymys q = new Kysymys();
+    q.setKysymys(kysymys);
+    q.setKysely(kysely);
+
+    kysely.getKysymykset().add(q);
+    kyselyRepository.save(kysely);
+
+    return "redirect:/kysely/" + kyselyId;
+}
+
+@GetMapping("/kysely/{kyselyId}")
 public String editKysely (@PathVariable Long kyselyId, Model model) {
 
     Kysely kysely = kyselyRepository.findById(kyselyId).orElse(null);

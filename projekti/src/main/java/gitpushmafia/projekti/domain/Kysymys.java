@@ -45,5 +45,9 @@ public class Kysymys {
     public String toString() {
         return "Kysymys [kysymysId=" + kysymysId + ", kysymys=" + kysymys + "]";
     }
+
+    public void setKysely(Kysely kysely) {
+        this.kysely = kysely;
+    }
     
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lisää kysymys</title>
+<body>
+
+<h2>Lisää kysymys kyselyyn:</h2>
+<h3 th:text="${kysely.nimi}"></h3>
+
+<form th:action="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys'}" 
+      method="post">
+
+    <input type="hidden" name="kyselyId" th:value="${kysely.kyselyId}" />
+
+    <label for="kysymys">Kysymys:</label><br>
+    <textarea id="kysymys" 
+              name="kysymys" 
+              placeholder="Kirjoita kysymys tähän..." 
+              required></textarea><br>
+
+    <button type="submit">Tallenna kysymys</button>
+</form>
+
+<br>
+<a th:href="@{'/kysely/' + ${kysely.kyselyId}}">Peruuta (takaisin kyselyyn)</a>
+
+</body>
+</html>
