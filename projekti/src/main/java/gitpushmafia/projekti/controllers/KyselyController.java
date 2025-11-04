@@ -14,41 +14,38 @@ import gitpushmafia.projekti.domain.KyselyRepository;
 @Controller
 public class KyselyController {
 
-@Autowired
-private KyselyRepository kyselyRepository;
+    @Autowired
+    private KyselyRepository kyselyRepository;
 
-@GetMapping("/kyselyLista")
-public String getKysely(Model model) {
-  model.addAttribute("kyselyt", kyselyRepository.findAll());
-  return "etusivu";
-}
+    @GetMapping("/etusivu")
+    public String getKysely(Model model) {
+        model.addAttribute("kyselyt", kyselyRepository.findAll());
+        return "etusivu";
+    }
 
-@GetMapping("/addkysely")
-public String addKysely(Model model) {
-    Kysely kysely = new Kysely();
-    model.addAttribute("kysely", kysely);
-    return "addkysely";
-}
+    @GetMapping("/addkysely")
+    public String addKysely(Model model) {
+        Kysely kysely = new Kysely();
+        model.addAttribute("kysely", kysely);
+        return "addkysely";
+    }
 
+    @GetMapping("/kysely/{kyselyId}")
+    public String editKysely(@PathVariable Long kyselyId, Model model) {
 
-@GetMapping("/kysely/{kyselyId}")
-public String editKysely (@PathVariable Long kyselyId, Model model) {
+        Kysely kysely = kyselyRepository.findById(kyselyId).orElse(null);
 
-    Kysely kysely = kyselyRepository.findById(kyselyId).orElse(null);
+        model.addAttribute("kysely", kysely);
 
-    model.addAttribute("kysely", kysely);
+        return "editkysely";
+    }
 
-    return "editkysely"; 
-}
+    @PostMapping("/savekysely")
+    public String saveKysely(@ModelAttribute Kysely kysely) {
+        kyselyRepository.save(kysely);
+        System.out.println("Tallennettu kysely: " + kysely);
 
-@PostMapping("/savekysely")
-public String saveKysely (@ModelAttribute Kysely kysely) {
-    kyselyRepository.save(kysely);
-    System.out.println("Tallennettu kysely: " + kysely);
-    
-    return "redirect:/kyselyt";
-}
-
-
+        return "redirect:/etusivu";
+    }
 
 }

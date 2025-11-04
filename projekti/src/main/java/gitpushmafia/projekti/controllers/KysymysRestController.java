@@ -16,13 +16,13 @@ public class KysymysRestController {
     @Autowired
     private KysymysRepository krepository;
 
-    @GetMapping("/kysymykset")
+    @GetMapping("/kyselyt/{kyselyId}/kysymykset")
     public @ResponseBody List<Kysymys> getKysymyksetRest() {
 
         return (List<Kysymys>) krepository.findAll();
     }
 
-    @GetMapping("/kysymykset/{kysymysId}")
+    @GetMapping("kyselyt/{kyselyId}/kysymykset/{kysymysId}")
     public @ResponseBody Optional<Kysymys> getKysymysByIdRest(@PathVariable("kysymysId") Long kysymysId) {
         return krepository.findById(kysymysId);
     }
