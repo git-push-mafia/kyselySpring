@@ -17,7 +17,7 @@ public class KyselyController {
 @Autowired
 private KyselyRepository kyselyRepository;
 
-@GetMapping("/kyselyt")
+@GetMapping("/kyselyLista")
 public String getKysely(Model model) {
   model.addAttribute("kyselyt", kyselyRepository.findAll());
   return "etusivu";
