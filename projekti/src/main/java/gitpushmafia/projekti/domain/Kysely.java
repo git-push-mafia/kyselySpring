@@ -29,6 +29,16 @@ public class Kysely {
 
   }
 
+
+
+  public Kysely(String nimi, String kuvaus, LocalDate aloituspvm, LocalDate lopetuspvm, List<Kysymys> kysymykset) {
+    this.nimi = nimi;
+    this.kuvaus = kuvaus;
+    this.aloituspvm = aloituspvm;
+    this.lopetuspvm = lopetuspvm;
+    this.kysymykset = kysymykset;
+  }
+
   public Long getKyselyId() {
     return kyselyId;
   }
