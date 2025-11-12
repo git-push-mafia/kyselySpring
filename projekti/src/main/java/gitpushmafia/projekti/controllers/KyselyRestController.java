@@ -29,7 +29,7 @@ public class KyselyRestController {
     }
 
     @GetMapping("/kyselyt/{kyselyId}")
-    public @ResponseBody Optional<Kysely> getKysely(Long kyselyId) {
+    public @ResponseBody Optional<Kysely> getKysely(@PathVariable Long kyselyId) {
         return krepository.findById(kyselyId);
     }
 
