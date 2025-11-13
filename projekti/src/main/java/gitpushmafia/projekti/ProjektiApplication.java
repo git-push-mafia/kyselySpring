@@ -27,10 +27,14 @@ public class ProjektiApplication {
 			Kysely hh = new Kysely("Haaga-Helia kysely", "Opiskelijoille tarkoitettu kysely", null, null, null);
 			kyselyrepo.save(hh);
 
-			Kysymys hh1 = new Kysymys("Mikä ala sinua kiinnostaa?", hh);
-			Kysymys hh2 = new Kysymys("Mikä on ollut itsellesi mielenkiintoisin kurssi?", hh);
+			Kysymys hh1 = new Kysymys("Mitä opiskelet?", hh);
+			Kysymys hh2 = new Kysymys("Mihin olet suuntautunut?", hh);
+			Kysymys hh3 = new Kysymys("Mikä ala sinua kiinnostaa?", hh);
+			Kysymys hh4 = new Kysymys("Mikä on ollut itsellesi mielenkiintoisin kurssi?", hh);
 			kysymysrepo.save(hh1);
 			kysymysrepo.save(hh2);
+			kysymysrepo.save(hh3);
+			kysymysrepo.save(hh4);
 
 		};
 	}
