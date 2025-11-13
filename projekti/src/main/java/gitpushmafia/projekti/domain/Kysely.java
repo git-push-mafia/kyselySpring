@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Kysely {
   private LocalDate lopetuspvm;
   
   @OneToMany(mappedBy = "kysely", cascade = CascadeType.ALL)
+  @JsonManagedReference 
   private List<Kysymys> kysymykset;
 
 

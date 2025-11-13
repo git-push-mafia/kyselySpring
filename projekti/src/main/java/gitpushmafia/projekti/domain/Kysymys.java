@@ -11,6 +11,8 @@ import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class Kysymys {
@@ -22,6 +24,7 @@ public class Kysymys {
 
     @ManyToOne
     @JoinColumn(name = "kyselyId")
+    @JsonBackReference
     private Kysely kysely;
 
     @OneToMany(mappedBy = "kysymys", cascade = CascadeType.ALL)
