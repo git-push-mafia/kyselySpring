@@ -31,9 +31,9 @@ public class Kysymys {
         
     }
 
-    public Kysymys(Long kysymysId, String kysymys) {
-        this.kysymysId = kysymysId;
+    public Kysymys(String kysymys, Kysely kysely) {
         this.kysymys = kysymys;
+        this.kysely = kysely;
     }
     public Long getKysymysId() {
         return kysymysId;
@@ -48,13 +48,17 @@ public class Kysymys {
         this.kysymys = kysymys;
     }
 
-    @Override
-    public String toString() {
-        return "Kysymys [kysymysId=" + kysymysId + ", kysymys=" + kysymys + "]";
+    public Kysely getKysely() {
+        return kysely;
     }
 
     public void setKysely(Kysely kysely) {
         this.kysely = kysely;
+    }
+
+     @Override
+    public String toString() {
+        return "Kysymys [kysymysId=" + kysymysId + ", kysymys=" + kysymys + "]";
     }
     
 }

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import gitpushmafia.projekti.domain.Kysely;
 import gitpushmafia.projekti.domain.KyselyRepository;
+import gitpushmafia.projekti.domain.Kysymys;
 import gitpushmafia.projekti.domain.KysymysRepository;
 
 @SpringBootApplication
@@ -22,6 +23,15 @@ public class ProjektiApplication {
 
 			Kysely k1 = new Kysely("kysely", "testi", null, null, null);
 			kyselyrepo.save(k1);
+
+			Kysely hh = new Kysely("Haaga-Helia kysely", "Opiskelijoille tarkoitettu kysely", null, null, null);
+			kyselyrepo.save(hh);
+
+			Kysymys hh1 = new Kysymys("Mikä ala sinua kiinnostaa?", hh);
+			Kysymys hh2 = new Kysymys("Mikä on ollut itsellesi mielenkiintoisin kurssi?", hh);
+			kysymysrepo.save(hh1);
+			kysymysrepo.save(hh2);
+
 		};
 	}
 }
