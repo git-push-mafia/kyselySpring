@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import gitpushmafia.projekti.domain.Kysymys;
+import gitpushmafia.projekti.domain.KysymysRepository;
 import gitpushmafia.projekti.domain.Vastaus;
 import gitpushmafia.projekti.domain.VastausRepository;
+import gitpushmafia.projekti.dto.KyselyVastauksetDto;
+import gitpushmafia.projekti.dto.VastausDto;
 
 @Controller
 @RequestMapping("/api")
@@ -22,14 +26,27 @@ public class VastausRestController {
     @Autowired
     private VastausRepository vrepository;
 
+    @Autowired
+    private KysymysRepository kysymysRepository;
+
     @GetMapping("/vastaukset")
     public @ResponseBody List<Vastaus> getVastauksetRest() {
         return (List<Vastaus>) vrepository.findAll();
     }
 
     @PostMapping("/vastaukset")
-    public @ResponseBody Vastaus tallennaVastaus(@RequestBody Vastaus vastaus) {
-        return vrepository.save(vastaus);
+    public @ResponseBody void tallennaVastaukset(@RequestBody KyselyVastauksetDto dto) {
+        for (VastausDto vdto : dto.getVastaukset()) {
+            Vastaus v = new Vastaus();
+            v.setVastaus(vdto.getVastaus());
+
+            Kysymys k = kysymysRepository.findById(vdto.getKysymysId())
+                    .orElseThrow(() -> new RuntimeException("Kysymystä ei löydy id:llä " + vdto.getKysymysId()));
+
+            v.setKysymys(k);
+
+            vrepository.save(v);
+        }
     }
 
 }
