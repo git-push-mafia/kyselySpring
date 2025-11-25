@@ -5,10 +5,12 @@ COPY mvnw pom.xml ./
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
 COPY ./src ./src
-RUN ./mvnw clean install -DskipTests 
+RUN ./mvnw clean install -DskipTests
+
 RUN find ./target -type f -name '*.jar' -exec cp {} /projekti/app/app.jar \; -quit
 
 FROM eclipse-temurin:17-jre-alpine
-COPY --from=builder /projekti/app/*.jar /projekti/app/
+WORKDIR /projekti/app
+COPY --from=builder /projekti/app/app.jar /projekti/app/app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "usr/local/lib/projekti.jar" ]
+ENTRYPOINT ["java", "-jar", "/projekti/app/app.jar"]
