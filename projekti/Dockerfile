@@ -11,4 +11,4 @@ RUN find ./target -type f -name '*.jar' -exec cp {} /projekti/app/app.jar \; -qu
 FROM eclipse-temurin:17-jre-alpine
 COPY --from=builder /projekti/app/*.jar /projekti/app/
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/projekti/app/app.jar" ]
+ENTRYPOINT ["java", "-jar", "usr/local/lib/projekti.jar" ]
