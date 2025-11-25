@@ -12,4 +12,6 @@ public interface VastausRepository extends CrudRepository<Vastaus, Long> {
 
     List<Vastaus> findByVastaus(String vastaus);
 
+    List<Vastaus> findByKysymys_Kysely_KyselyId(Long kyselyId);
+
 }
