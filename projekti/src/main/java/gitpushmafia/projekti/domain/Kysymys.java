@@ -13,7 +13,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 @Entity
 public class Kysymys {
 
@@ -21,6 +20,7 @@ public class Kysymys {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long kysymysId;
     private String kysymys;
+    private String vastaustyyppi;
 
     @ManyToOne
     @JoinColumn(name = "kyselyId")
@@ -30,23 +30,30 @@ public class Kysymys {
     @OneToMany(mappedBy = "kysymys", cascade = CascadeType.ALL)
     private List<Vastaus> vastaukset;
 
-    public Kysymys(){
-        
+    @OneToMany(mappedBy = "kysymys", cascade = CascadeType.ALL)
+    private List<Vaihtoehto> vaihtoehdot;
+
+    public Kysymys() {
+
     }
 
     public Kysymys(String kysymys, Kysely kysely) {
         this.kysymys = kysymys;
         this.kysely = kysely;
     }
+
     public Long getKysymysId() {
         return kysymysId;
     }
+
     public void setKysymysId(Long kysymysId) {
         this.kysymysId = kysymysId;
     }
+
     public String getKysymys() {
         return kysymys;
     }
+
     public void setKysymys(String kysymys) {
         this.kysymys = kysymys;
     }
@@ -59,9 +66,25 @@ public class Kysymys {
         this.kysely = kysely;
     }
 
-     @Override
+    public String getVastaustyyppi() {
+        return vastaustyyppi;
+    }
+
+    public void setVastaustyyppi(String vastaustyyppi) {
+        this.vastaustyyppi = vastaustyyppi;
+    }
+
+    public List<Vaihtoehto> getVaihtoehdot() {
+        return vaihtoehdot;
+    }
+
+    public void setVaihtoehdot(List<Vaihtoehto> vaihtoehdot) {
+        this.vaihtoehdot = vaihtoehdot;
+    }
+
+    @Override
     public String toString() {
         return "Kysymys [kysymysId=" + kysymysId + ", kysymys=" + kysymys + "]";
     }
-    
+
 }

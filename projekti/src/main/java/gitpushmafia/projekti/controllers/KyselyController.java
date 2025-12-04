@@ -45,7 +45,7 @@ public class KyselyController {
         kyselyRepository.save(kysely);
         System.out.println("Tallennettu kysely: " + kysely);
 
-        return "redirect:/etusivu";
+        return "redirect:/";
     }
 
 }
