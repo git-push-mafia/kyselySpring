@@ -24,7 +24,7 @@ public class ProjektiApplication {
 			Kysely k1 = new Kysely("kysely", "testi", null, null, null);
 			kyselyrepo.save(k1);
 
-			Kysely hh = new Kysely("Haaga-Helia kysely", "Opiskelijoille tarkoitettu kysely", null, null, null);
+			Kysely hh = new Kysely("Opiskelu ja kiinnostuksen kohteet", "Opiskelijoille tarkoitettu kysely", null, null, null);
 			kyselyrepo.save(hh);
 
 			Kysymys hh1 = new Kysymys("Mitä opiskelet?", hh);

@@ -10,7 +10,7 @@
     <h2>Lisää kysymys kyselyyn:</h2>
     <h3 th:text="${kysely.nimi}"></h3>
 
-    <form th:action="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys/' + ${kysymysId}}" method="post">
+    <form th:action="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys'}" method="post">
 
         <input type="hidden" name="kyselyId" th:value="${kysely.kyselyId}" />
 

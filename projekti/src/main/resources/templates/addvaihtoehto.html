@@ -10,7 +10,27 @@
 <body>
     <h1>Lisää vastausvaihtoehto</h1>
 
-    <form>
-
+    <form method="post" th:action="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys/' + ${kysymys.kysymysId} + '/addvaihtoehto'}">
+        <div id="vaihtoehdot">
+        <textarea name="vaihtoehto" placeholder="Kirjoita vaihtoehto tähän" required></textarea>
+        </div><br>
+        <button type="button" onclick="addChoice()">Lisää vaihtoehto</button>
+        <button type="submit">Tallenna</button>
     </form>
+
+    <script>
+
+        function addChoice() {
+            const container = document.getElementById("vaihtoehdot");
+
+            const rivi = document.createElement("textarea");
+            rivi.name = "vaihtoehto";
+            rivi.placeholder = "Kirjoita vaihtoehto"
+            rivi.required = true;
+
+            container.appendChild(document.createElement("br"));
+            container.appendChild(rivi);
+
+        }
+    </script>
 </body>

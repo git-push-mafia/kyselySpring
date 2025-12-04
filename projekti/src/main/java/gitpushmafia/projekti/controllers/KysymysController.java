@@ -43,7 +43,7 @@ public class KysymysController {
     }
 
     @PostMapping("/kysely/{kyselyId}/addkysymys")
-    public String saveKysymys(@PathVariable Long kyselyId, @PathVariable Long kysymysId, @RequestParam String kysymys,
+    public String saveKysymys(@PathVariable Long kyselyId, @RequestParam String kysymys,
             @RequestParam String vastaustyyppi) {
         Kysely kysely = kyselyRepository.findById(kyselyId).orElseThrow();
 
@@ -51,31 +51,32 @@ public class KysymysController {
         q.setKysymys(kysymys);
         q.setVastaustyyppi(vastaustyyppi);
         q.setKysely(kysely);
+        q = kysmyrepo.save(q);
 
         kysely.getKysymykset().add(q);
         kyselyRepository.save(kysely);
 
         if (vastaustyyppi.equals("monivalinta")) {
-            return "redirect:/kysely/" + kyselyId + "/addkysymys" + q.getKysymysId() + "/addvaihtoehto";
+            return "redirect:/kysely/" + kyselyId + "/addkysymys/" + q.getKysymysId() + "/addvaihtoehto";
         } else {
             return "redirect:/kysely/" + kyselyId;
         }
 
     }
 
-    @GetMapping("kysely/{kyselyId}/addkysymys/{kysymysId}/addvaihtoehto")
-    public String addVaihtoehto(@PathVariable Long kysymysId, Model model) {
+    @GetMapping("/kysely/{kyselyId}/addkysymys/{kysymysId}/addvaihtoehto")
+    public String addVaihtoehto(@PathVariable Long kyselyId, @PathVariable Long kysymysId, Model model) {
 
         Kysymys kysymys = kysmyrepo.findById(kysymysId).orElseThrow();
-
+        
         model.addAttribute("kysymys", kysymys);
         model.addAttribute("vaihtoehto", new Vaihtoehto());
 
         return "addvaihtoehto";
     }
 
-    @PostMapping("kysely/{kyselyId}/addkysymys/{kysymysId}/addvaihtoehto")
-    public String saveVaihtoehto(@PathVariable Long kysymysId, @RequestParam String vaihtoehto) {
+    @PostMapping("/kysely/{kyselyId}/addkysymys/{kysymysId}/addvaihtoehto")
+    public String saveVaihtoehto(@PathVariable Long kyselyId, @PathVariable Long kysymysId, @RequestParam String vaihtoehto) {
 
         Kysymys kysymys = kysmyrepo.findById(kysymysId).orElseThrow();
 
@@ -86,6 +87,6 @@ public class KysymysController {
         kysymys.getVaihtoehdot().add(ve);
         kysmyrepo.save(kysymys);
 
-        return "redirect:/addkysymys/" + kysymysId;
+        return "redirect:/kysely/" + kyselyId + "/addkysymys/" + kysymysId + "/addvaihtoehto";
     }
 }

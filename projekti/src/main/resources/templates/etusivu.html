@@ -7,13 +7,22 @@
 </head>
 <body>
     <h1>Kyselyt</h1>
-    <h3>Nimi Kuvaus</h3>
-    <ul>
-        <li th:each="kysely : ${kyselyt}">
-            <a th:href="@{'/kysely/' + ${kysely.kyselyId}}" th:text="${kysely.nimi}"></a>
-            <td th:text="${kysely.kuvaus}"></td>
-        </li>
-    </ul>
+    <table style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th style="padding: 8px; text-align: left; border-right: 1px solid #000000; border-bottom: 2px solid #000;">Nimi</th>
+                <th style="padding: 8px; text-align: left; border-bottom: 2px solid #000;">Kuvaus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="kysely : ${kyselyt}">
+                <td style="padding: 8px; border-bottom: 1px solid #000000; border-right: 1px solid #000000;">
+                    <a th:href="@{'/kysely/' + ${kysely.kyselyId}}" th:text="${kysely.nimi}"></a>
+                </td>
+                <td style="padding: 8px; border-bottom: 1px solid #000000;" th:text="${kysely.kuvaus}"></td>
+            </tr>
+        </tbody>
+    </table>
     <a th:href="@{/addkysely}">Lisää kysely</a>
 </body>
 </html>
