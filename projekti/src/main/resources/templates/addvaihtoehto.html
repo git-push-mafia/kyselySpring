@@ -10,7 +10,7 @@
 <body>
     <h1>Lisää vastausvaihtoehto</h1>
 
-    <form method="post" th:action="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys/' + ${kysymys.kysymysId} + '/addvaihtoehto'}">
+    <form method="post" th:action="@{'/kysely/' + ${kysymys.kysely.kyselyId} + '/addkysymys/' + ${kysymys.kysymysId} + '/addvaihtoehto'}">
         <div id="vaihtoehdot">
         <textarea name="vaihtoehto" placeholder="Kirjoita vaihtoehto tähän" required></textarea>
         </div><br>
