@@ -11,7 +11,14 @@
 
     <h3>Kysymykset</h3>
     <ol>
-        <li th:each="q : ${kysely.kysymykset}" th:text="${q.kysymys}"></li>
+        <li th:each="q : ${kysely.kysymykset}">
+            <strong th:text="${q.kysymys}"></strong>
+            <ul th:if="${q.vastaustyyppi == 'monivalinta'}">
+                
+                <li th:each="opt : ${q.vaihtoehdot}" th:text="${opt.vaihtoehto}"></li>
+                <br>
+            </ul>
+        </li>
     </ol>
 
     <a th:href="@{'/kysely/' + ${kysely.kyselyId} + '/addkysymys'}">+ Lisää kysymys</a>

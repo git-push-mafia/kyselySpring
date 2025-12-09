@@ -25,8 +25,9 @@ public class Vaihtoehto {
     public Vaihtoehto() {
     }
 
-    public Vaihtoehto(String vaihtoehto) {
+    public Vaihtoehto(String vaihtoehto, Kysymys kysymys) {
         this.vaihtoehto = vaihtoehto;
+        this.kysymys = kysymys;
     }
 
     public Long getVaihtoehtoId() {

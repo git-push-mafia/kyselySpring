@@ -37,9 +37,10 @@ public class Kysymys {
 
     }
 
-    public Kysymys(String kysymys, Kysely kysely) {
+    public Kysymys(String kysymys, Kysely kysely, String vastaustyyppi) {
         this.kysymys = kysymys;
         this.kysely = kysely;
+        this.vastaustyyppi = vastaustyyppi;
     }
 
     public Long getKysymysId() {
