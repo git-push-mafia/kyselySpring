@@ -18,6 +18,10 @@
                 <li th:each="opt : ${q.vaihtoehdot}" th:text="${opt.vaihtoehto}"></li>
                 <br>
             </ul>
+           <form th:action="@{/kysely/{kyselyId}/kysymykset/{kysymysId}/delete(kyselyId=${kysely.kyselyId}, kysymysId=${q.kysymysId})}" 
+            method="post" style="display:inline">
+                <button type="submit">Poista</button>
+            </form>
         </li>
     </ol>
 

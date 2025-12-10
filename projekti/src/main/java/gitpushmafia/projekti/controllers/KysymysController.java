@@ -89,4 +89,10 @@ public class KysymysController {
 
         return "redirect:/kysely/" + kyselyId + "/addkysymys/" + kysymysId + "/addvaihtoehto";
     }
+
+    @PostMapping("/kysely/{kyselyId}/kysymykset/{kysymysId}/delete")
+    public String deleteKysymys(@PathVariable("kysymysId") Long kysymysId, @PathVariable("kyselyId") Long kyselyId) {
+    kysmyrepo.deleteById(kysymysId);
+    return "redirect:/kysely/" + kyselyId;
+    }
 }

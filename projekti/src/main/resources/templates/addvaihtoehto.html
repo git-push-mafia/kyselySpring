@@ -10,12 +10,11 @@
 <body>
     <h1>Lisää vastausvaihtoehto</h1>
 
-    <form method="post" th:action="@{'/kysely/' + ${kysymys.kysely.kyselyId} + '/addkysymys/' + ${kysymys.kysymysId} + '/addvaihtoehto'}">
+    <form method="post" th:action="@{'/kysely/' + ${kysymys.kysely.kyselyId} + '/addkysymys/' + ${kysymys.kysymysId} + '/addvaihtoehto'}" onsubmit="alert('Vaihtoehto lisätty')">
         <div id="vaihtoehdot">
         <textarea name="vaihtoehto" placeholder="Kirjoita vaihtoehto tähän" required></textarea>
         </div><br>
-        <button type="button" onclick="addChoice()">Lisää vaihtoehto</button>
-        <button type="submit">Tallenna</button>
+        <button type="submit">Lisää ja tallenna</button>
     </form>
 
     <br>
